@@ -1,0 +1,235 @@
+/* ─── ATMOS Weather App — Global Styles ──────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0A0A0A;
+  color: #ffffff;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ─── Focus & Interactions ──────────────────────────────────────────────────── */
+
+input:focus {
+  border-color: #555 !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+input:focus::placeholder {
+  color: #999;
+}
+
+/* Button interactions */
+button {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:not(:disabled):active {
+  transform: translateY(0px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ─── Card Interactions ──────────────────────────────────────────────────────── */
+
+/* Stat cards hover effect */
+[role="generic"] > [style*="display: flex"] > [style*="flexDirection: column"]:hover {
+  background: #111 !important;
+  transform: translateY(-4px);
+}
+
+/* Forecast card hover effect */
+div[style*="flex: 0 0 auto"]:hover {
+  background: #111 !important;
+  transform: translateY(-6px) scale(1.05);
+}
+
+div[style*="flex: 0 0 auto"]:hover img {
+  transform: scale(1.15) rotate(-10deg);
+}
+
+/* ─── Responsive Design ────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+
+  /* Improve touch targets */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Stack forecast cards horizontally with scroll */
+  div[style*="overflowX"] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improve spacing on small screens */
+  input[placeholder="ENTER CITY NAME"] {
+    font-size: 16px; /* Prevent zoom on focus */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+
+  /* Reduce padding for very small screens */
+  header {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  /* Better button sizing for small screens */
+  button[type="submit"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* ─── Print Styles ────────────────────────────────────────────────────────── */
+
+@media print {
+  header,
+  footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* ─── Accessibility ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0A0A0A;
+    color: #ffffff;
+  }
+}
+
